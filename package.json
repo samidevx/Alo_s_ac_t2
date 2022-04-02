@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/samidevx/Alo_s_ac_t2/issues"
   },
-  "homepage": "https://github.com/samidevx/Alo_s_ac_t2#readme"
+  "homepage": "https://github.com/samidevx/Alo_s_ac_t2#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
