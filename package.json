@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/samidevx/Alo_s_ac_t2#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "parse-int": "^1.0.3"
   }
 }
