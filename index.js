@@ -59,23 +59,23 @@ app.post('/db', (req,res) => {
 app.put('/db/:email', (req,res) => {
     const email = parseInt(req.params.email)
     let dba = db.find(dba => dba.email === email)
-    db.first_name =req.body.first_name,
-    db.last_name =req.body.last_name,
-    db.full_name =req.body.full_name,
-    db.country =req.body.country,
-    db.position =req.body.position,
-    db.twitter =req.body.twitter,
-    db.linkedin =req.body.linkedin,
-    db.phone_number =req.body.phone_number,
-    db.website_url=req.body.website_url,
-    db.company =req.body.company,
-    res.status(200).json(db)
+    dba.first_name =req.body.first_name,
+    dba.last_name =req.body.last_name,
+    dba.full_name =req.body.full_name,
+    dba.country =req.body.country,
+    dba.position =req.body.position,
+    dba.twitter =req.body.twitter,
+    dba.linkedin =req.body.linkedin,
+    dba.phone_number =req.body.phone_number,
+    dba.website_url=req.body.website_url,
+    dba.company =req.body.company,
+    res.status(200).json(dba)
 })
 
 app.delete('/db/:email', (req,res) => {
     const email = parseInt(req.params.email)
     let dba = db.find(dba => dba.email === email)
-    db.splice(db.indexOf(db),1)
+    db.splice(db.indexOf(dba),1)
     res.status(200).json(dba)
 })
 
