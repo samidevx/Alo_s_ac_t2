@@ -8,47 +8,48 @@ app.use(logErrors);
 app.use(dbErrorHandler);
 app.use(errorHandler);
 
-//Find all db
 app.get('/db', (req,res) => {
     res.status(200).json(db)
 })
 
 
- 
-//Find db details
-app.get('/db/:id', (req,res) => {
+app.get('/db/:email', (req,res) => {
     
-    const id = parseInt(req.params.id)
-    const db = db.find(db => db.id === id)
-    res.status(200).json(db)
+    const email = parseInt(req.params.email)
+    const dba = db.find(dba => dba.email === email)
+    res.status(200).json(dba)
 })
 
-//creates a db
 app.post('/db', (req,res) => {
     db.push(req.body)
     res.status(200).json(db)
 })
 
-//updates a db
-app.put('/db/:id', (req,res) => {
-    const id = parseInt(req.params.id)
-    let db = db.find(db => db.id === id)
-    db.name =req.body.name,
-    db.sku=req.body.sku,
-    db.salePrice =req.body.salePrice,
+
+app.put('/db/:email', (req,res) => {
+    const email = parseInt(req.params.email)
+    let dba = db.find(dba => dba.email === email)
+    db.first_name =req.body.first_name,
+    db.last_name =req.body.last_name,
+    db.full_name =req.body.full_name,
+    db.country =req.body.country,
+    db.position =req.body.position,
+    db.twitter =req.body.twitter,
+    db.linkedin =req.body.linkedin,
+    db.phone_number =req.body.phone_number,
+    db.website_url=req.body.website_url,
+    db.company =req.body.company,
     res.status(200).json(db)
 })
 
-//Deletes a db
-app.delete('/db/:id', (req,res) => {
-    const id = parseInt(req.params.id)
-    let db = db.find(db => db._id === id)
+app.delete('/db/:email', (req,res) => {
+    const email = parseInt(req.params.email)
+    let dba = db.find(dba => dba.email === email)
     db.splice(db.indexOf(db),1)
-    res.status(200).json(db)
+    res.status(200).json(dba)
 })
 
 
-//Development-only error handler
 function logErrors(err, req, res, next) {
     console.error(err.stack);
     next(err);
@@ -67,6 +68,6 @@ function logErrors(err, req, res, next) {
 
 
 
-app.listen(3000, () => {
+app.listen(8080, () => {
     console.log("Serveur à l'écoute")
 })
