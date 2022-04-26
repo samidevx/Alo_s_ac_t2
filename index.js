@@ -21,7 +21,37 @@ app.get('/db/:email', (req,res) => {
 })
 
 app.post('/db', (req,res) => {
-    db.push(req.body)
+    body('email').isString().notEmpty,
+    body('first_name').isString().notEmpty,
+    body('last_name').isString().notEmpty,
+    body('full_name').isString().notEmpty,
+    body('position').isString().notEmpty,
+    body('twitter').isString().notEmpty,
+    body('linkedin').isString().notEmpty,
+    body('company').isString().notEmpty,
+    body('website_url').isURL().trim().escape(),
+    body('domains').isURL().trim().escape(),
+    body('country').isLength({ min: 5 }),
+
+     (req,res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+    db.push({
+        email : req.body.email,
+        first_name : req.body.first_name,
+        last_name : req.body.last_name,
+        full_name : req.body.full_name,
+        position : req.body.position,
+        twitter : req.body.twitter,
+        
+        linkedin : req.body.linkedin,
+        company : req.body.company,
+        website_url : req.body.website_url,
+        domains : req.body.domains,
+        country : req.body.country
+    })
     res.status(200).json(db)
 })
 
